@@ -10,14 +10,39 @@
     <div class="container"> 
         
         <script>
-            const parentDiv = document.getElementsByClassName('container')[0];
 
-            for (let i = 0; i < 256; i++) {
-                const newChildDiv = document.createElement('div');
-                newChildDiv.className = 'cell';
-                parentDiv.appendChild(newChildDiv); 
+            // will use this as a prompt to get number of cells
+            let rowsColumns = 0;
+            while (true) {
+                rowsColumns = parseInt(prompt("Enter number of squares per side"), 10);
+                if (rowsColumns > 100) {
+                    alert("Too high. Enter a number less than 100 and greater than 0");
+                } else if (rowsColumns < 1) {
+                    alert("Too low. Enter a number less than 100 and greater than 0");
+                } else {
+                    break;
+                }
+            } 
+            console.log(rowsColumns);
+            
+            const parentDiv = document.getElementsByClassName('container')[0];
+            
+            // Create grid and change the color of each cell if the user's mouse enters
+            for (let i = 0; i < rowsColumns ; i++) {
+                for (let j = 0; j < rowsColumns ; j++) {
+                     const newChildDiv = document.createElement('div');
+                     newChildDiv.className = 'cell';
+                     // use the flex shorthand so basis is applied and items don't grow/shrink
+                     newChildDiv.style.flex = `0 0 ${100/rowsColumns}%`;
+                     newChildDiv.addEventListener('mouseenter', () => {
+                        newChildDiv.style.backgroundColor = 'purple';
+                     });
+                     parentDiv.appendChild(newChildDiv); 
+                    
+                }
              
             }
+    
 
 
 
