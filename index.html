@@ -43,11 +43,14 @@
                 // prompt to get number of cells
                 while (true) {
                     rowsColumns = parseInt(prompt("Enter number of squares per side"), 10);
+                    if (rowsColumns === null) return;
                     if (rowsColumns > 100) {
-                        alert("Too high. Enter a number less than 100 and greater than 0");
+                        alert("Please enter an integer from 1 to 100");
                     } else if (rowsColumns < 1) {
-                        alert("Too low. Enter a number less than 100 and greater than 0");
-                    } else {
+                         alert("Please enter an integer from 1 to 100");
+                    } else if (Number.isNaN(rowsColumns)) {
+                        alert("Please enter an integer from 1 to 100");
+                    }else {
                         break;
                     }
                 } 
